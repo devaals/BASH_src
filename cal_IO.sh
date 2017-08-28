@@ -167,7 +167,7 @@ fi
 
 echo "${DATA}" >> ${DATAFILE}
 
-if ["${DEBUG}" == "Y" ]; then
+if [ "${DEBUG}" == "Y" ]; then
 echo "instance, start time, end time, max_iops, max_mbps, max_pmbps, latency, disks"
 echo "${DATA}"
 fi
