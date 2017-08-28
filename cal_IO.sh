@@ -4,7 +4,7 @@
 #Version: 1.0
 
 #Запуск скрипта требует передачи параметров, например:
-#./hostcall_io.sh -i isuzht -d 8 -l 10 -v
+#./cal_IO.sh -i isuzht -d 8 -l 10 -v
 
 #######################################################################
 # Initialize/Default Variables
