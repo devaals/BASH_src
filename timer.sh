@@ -1,4 +1,4 @@
-#!/bin/bash
+﻿#!/bin/bash
 
 # Таймер выполнения скриптов
 # Автор: Ребровский Сергей
@@ -25,3 +25,4 @@ else
 	total_sec=$(expr $remainder_sec % 60)
 	echo "$total_hour hour $total_min min $total_sec sec"
 fi
+		
