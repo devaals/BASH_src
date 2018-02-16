@@ -14,6 +14,11 @@
 # + условия проверки строк конфиг-х файлов, которые планируется изменить
 # + вывод информационных сообщений в цвете
 #
+# Версия: 2.1
+# Изменения(от 16.02.2018): 
+# + добавлена установка пакетов bzip2, zip, unzip
+# + запрос на установку шрифтов получает автоматический ответ("-y")
+#
 # Запуск скрипта:
 # Запускать из-под root или sudo, желательно на только что развёрнутой системе
 
@@ -138,8 +143,8 @@ while true; do
     if [ "$answer" == "Y" -o "$answer" == "y" ]
     then
 	yum update -y
-	yum install -y "epel-release" "deltarpm" "lynx" "net-tools" "kernel-devel" "perl" "gcc" "make" "wget" "nano" "mc" "atop" "iftop" "htop" "binutils" "hexedit" "dos2unix" "pigz"
-	yum groupinstall "Шрифты"
+	yum install -y "epel-release" "deltarpm" "lynx" "net-tools" "kernel-devel*" "kernel-header*" "perl" "gcc" "make" "wget" "nano" "mc" "atop" "iftop" "htop" "binutils" "hexedit" "dos2unix" "pigz" "bzip2" "zip" "unzip" "bind-utils"
+	yum groupinstall -y "Шрифты"
 	break 1
     elif [ "$answer" == "N" -o "$answer" == "n" ]
     then 
