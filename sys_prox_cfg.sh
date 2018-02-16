@@ -143,7 +143,7 @@ while true; do
     if [ "$answer" == "Y" -o "$answer" == "y" ]
     then
 	yum update -y
-	yum install -y "epel-release" "deltarpm" "lynx" "net-tools" "kernel-devel*" "kernel-header*" "perl" "gcc" "make" "wget" "nano" "mc" "atop" "iftop" "htop" "binutils" "hexedit" "dos2unix" "pigz" "bzip2" "zip" "unzip" "bind-utils"
+	yum install -y "epel-release" "deltarpm" "lynx" "net-tools" "kernel-devel*" "kernel-header*" "perl" "gcc" "make" "wget" "nano" "mc" "atop" "iftop" "htop" "binutils" "hexedit" "dos2unix" "pigz" "bzip2" "zip" "unzip" "bind-utils" "git"
 	yum groupinstall -y "Шрифты"
 	break 1
     elif [ "$answer" == "N" -o "$answer" == "n" ]
