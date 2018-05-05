@@ -2,7 +2,7 @@
 # ----------------------------------------------
 # NAME:   Auto Install FTP Server Centos 7+
 #
-# AUTHOR : Volkov Alexey & Artem Vereschaga & Vladislav Patrushev
+# AUTHOR : Volkov Alexey & Artyom Vereschaga & Vladislav Patrushev
 # VERSION: v.1.4
 # DATE   : 27.11.2017
 #
@@ -14,15 +14,15 @@
 export OS_name; OS_name=$(cat /etc/redhat-release | awk '{print $1}')
 # Переменная для проверки версии ОС
 export Version; Version=$(cat /etc/redhat-release | grep 'CentOS'|  awk '{print $4}')
-# Переменная содержащая ip-адрес ftp
-export ftpUrl; ftpUrl=10.160.20.13
+# Переменная содержащая ip-адрес ftp, заменить <need_IP> на ip-адрес
+export ftpUrl; ftpUrl=<need_IP>
 # Переменная содержащая порт
 export ftpport; ftpport=21
-# Переменная содержащая логин
-export ftpLogin; ftpLogin=Reader_S
-# Переменная содержащая пароль
-export ftpPass; ftpPass=7ujmMJU
-# Переменная содержащая корневую директорию ftp
+# Переменная содержащая логин, заменить <need_login> на логин
+export ftpLogin; ftpLogin=<need_login>
+# Переменная содержащая пароль, заменить <need_pass> на пароль 
+export ftpPass; ftpPass=<need_pass>
+# Переменная содержащая корневую директорию ftp, куда будут помещаться файлы/папки 
 export ftp_dir; ftp_dir=/opt/ftp
 
 ###############################################################################################################################
@@ -82,7 +82,7 @@ fi
 timeout 1 bash -c "cat < /dev/null > /dev/tcp/${ftpUrl}/${ftpport}"
 RESULT=$?
 if [ "${RESULT}" -ne 0 ]; then
-    echo -e "\e[31mFailed: Нет Доступа до FTP://$ftpUrl. Обратитесь к системному Администратору\e[0m"
+    echo -e "\e[31mFailed: Нет доступа до FTP://$ftpUrl. Обратитесь к системному администратору\e[0m"
 else
 echo -e "\e[32mConnected: Доступ к FTP есть, начинаю установку\e[0m"
 wget -t 25 ftp://$ftpLogin:$ftpPass@$ftpUrl/Software/vsftpd-3.0.2-22.el7.x86_64.rpm -O /opt/vsftpd-3.0.2-22.el7.x86_64.rpm
@@ -99,7 +99,7 @@ sed -i "s/.*chroot_local_user=.*/chroot_local_user=YES/" /etc/vsftpd/vsftpd.conf
 sed -i "s/.*connect_from_port_20=.*/connect_from_port_20=YES/" /etc/vsftpd/vsftpd.conf
 sed -i "s/.*xferlog_std_format=.*/xferlog_std_format=YES/" /etc/vsftpd/vsftpd.conf
 echo -e "allow_writeable_chroot=YES\npasv_enable=YES" >> /etc/vsftpd/vsftpd.conf
-cd /etc/vsftpd && echo rvec-adm >> user_list
+cd /etc/vsftpd && echo adm >> user_list
 systemctl start vsftpd
 echo -e "P@ssw0rd\nP@ssw0rd\n" | passwd ftpuser > /dev/null 2>&1
 echo -e "\e[32mУстановлен пароль для ftpuser. Пароль P@ssw0rd\e[0m"
